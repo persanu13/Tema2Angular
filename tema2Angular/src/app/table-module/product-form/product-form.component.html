@@ -1,0 +1,119 @@
+<div *ngIf="productForm">
+  <form nz-form [formGroup]="productForm" (ngSubmit)="addEditProduct()">
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="shopping-cart">
+          <input
+            formControlName="productName"
+            nz-input
+            placeholder="Product name"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <p
+      *ngIf="
+        productName?.touched &&
+        productForm.controls['productName'].hasError('invalidSymbols')
+      "
+      class="error-message"
+    >
+      Only letters are allowed
+    </p>
+    <p
+      *ngIf="
+        productName?.touched &&
+        productForm.controls['productName'].hasError('required')
+      "
+      class="error-message"
+    >
+      This field is required
+    </p>
+
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="tags">
+          <input
+            formControlName="categoryName"
+            nz-input
+            placeholder="Category name"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <p
+      *ngIf="
+        categoryName?.touched &&
+        productForm.controls['categoryName'].hasError('invalidSymbols')
+      "
+      class="error-message"
+    >
+      Only letters are allowed
+    </p>
+    <p
+      *ngIf="
+        categoryName?.touched &&
+        productForm.controls['categoryName'].hasError('required')
+      "
+      class="error-message"
+    >
+      This field is required
+    </p>
+
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="appstore">
+          <input
+            formControlName="quantity"
+            nz-input
+            placeholder="quantity"
+            type="number"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <p
+      *ngIf="
+        quantity?.touched &&
+        productForm.controls['quantity'].hasError('required')
+      "
+      class="error-message"
+    >
+      This field is required
+    </p>
+
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="dollar-circle">
+          <input
+            formControlName="price"
+            nz-input
+            placeholder="price"
+            type="number"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <p
+      *ngIf="
+        price?.touched && productForm.controls['price'].hasError('required')
+      "
+      class="error-message"
+    >
+      This field is required
+    </p>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button
+          type="submit"
+          nz-button
+          nzType="primary"
+          [disabled]="!productForm.valid"
+        >
+          Submit
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

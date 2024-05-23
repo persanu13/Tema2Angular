@@ -1,1 +1,49 @@
-<p>table works!</p>
+<div class="header">
+  <h2>Product List</h2>
+</div>
+
+<div class="main-container">
+  <button
+    class="add-btn"
+    nz-button
+    nzType="primary"
+    (click)="toggleAddProduct()"
+  >
+    Add New Product
+  </button>
+  <nz-table
+    #basicTable
+    [nzData]="products"
+    [nzPageSize]="8"
+    [nzShowPagination]="basicTable.data && !isLoading"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="30%">Product Name</th>
+        <th nzWidth="30%">Category</th>
+        <th nzWidth="15%">Quantity</th>
+        <th nzWidth="15%">Price</th>
+        <th nzWidth="10%"></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="basicTable.data && !isLoading">
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.category }}</td>
+        <td>{{ data.quantity }}</td>
+        <td>{{ data.price }}</td>
+        <td>
+          <button nz-button (click)="toggleUpdateProduct(data)">
+            <i nz-icon nzType="edit"></i>
+          </button>
+          <button nz-button (click)="toggleDeleteProduct(data)">
+            <i nz-icon nzType="delete"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div *ngIf="isLoading" id="spinner">
+    <nz-spin [nzSize]="'large'" nzSimple></nz-spin>
+  </div>
+</div>
