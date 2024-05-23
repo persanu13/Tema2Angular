@@ -1,5 +1,7 @@
 # Tema2Angular
 
+## Run npm run server for api to work!
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
 
 ## Development server
